@@ -26,6 +26,7 @@ app_proxy.use(function(req, res, next)
 		console.log(value+req.url);
 		//console.log(req.url);
 		//res.send();
+		//client.lpush("recent", req.url);
 		res.redirect(value+req.url);
 		
 		//next();
@@ -112,11 +113,11 @@ client.get("msg", function(err,value){res.send(value)});
 
 })
 app.get('/recent', function(req, res) {
-client.lrange("visits",0,5,function(err,value){
-res.send(value)});
-})
-
-app.get('/upload', function(req, res) {
 client.lrange("recent",0,5,function(err,value){
 res.send(value)});
 })
+
+//app.get('/upload', function(req, res) {
+//client.lrange("recent",0,5,function(err,value){
+//res.send(value)});
+//})
